@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="740.0" style="-fx-background-color: #4d0026;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ticketbooking.cinema.AddMovie">
+
+    <children>
+        <AnchorPane prefHeight="55.0" prefWidth="735.0" style="-fx-background-color: #330000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="278.0" layoutY="14.0" text="Add Movie Details" textFill="#faf1f1">
+                    <font>
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="63.0" fitWidth="63.0" layoutX="202.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../resources/pictures/3d-glasses.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <ImageView fx:id="poster" fitHeight="290.0" fitWidth="200.0" focusTraversable="true" layoutX="489.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../pictures/defaultmovie.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="getimg" alignment="CENTER_RIGHT" layoutX="523.0" layoutY="454.0" prefHeight="34.0" prefWidth="129.0" style="-fx-background-color: #330000;" text="Get Image" textFill="WHITE">
+         <font>
+            <Font name="Bookman Old Style Bold" size="16.0" />
+         </font></Button>
+
+        <TextField fx:id="genre" layoutX="56.0" layoutY="153.0" prefHeight="26.0" prefWidth="251.0" promptText="Genre">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+        <TextField fx:id="name" layoutX="56.0" layoutY="96.0" prefHeight="26.0" prefWidth="251.0" promptText="Movie Name">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextField>
+        <TextField fx:id="director" layoutX="56.0" layoutY="235.0" prefHeight="26.0" prefWidth="251.0" promptText="Director">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextField>
+        <TextField fx:id="cast" layoutX="56.0" layoutY="281.0" prefHeight="26.0" prefWidth="251.0" promptText="Cast">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextField>
+        <Button fx:id="submit" alignment="CENTER_RIGHT" layoutX="469.0" layoutY="535.0" prefHeight="43.0" prefWidth="108.0" style="-fx-background-color: #330000;" text="Submit" textFill="WHITE">
+         <font>
+            <Font name="Bookman Old Style Bold" size="16.0" />
+         </font></Button>
+
+        <Button fx:id="back" alignment="CENTER_RIGHT" layoutX="598.0" layoutY="535.0" prefHeight="43.0" prefWidth="88.0" style="-fx-background-color: #330000;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Bookman Old Style Bold" size="16.0" />
+         </font></Button>
+
+        <TextArea fx:id="details" layoutX="56.0" layoutY="328.0" prefHeight="193.0" prefWidth="251.0" promptText="Movie Details">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextArea>
+        <TextField fx:id="rating" layoutX="56.0" layoutY="543.0" prefHeight="26.0" prefWidth="251.0" promptText="Rating">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextField>
+      <TextField fx:id="minutes" layoutX="56.0" layoutY="196.0" prefHeight="26.0" prefWidth="251.0" promptText="Minutes">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font></TextField>
+      <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="607.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="532.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/download.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="476.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/upload.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="date" layoutX="487.0" layoutY="96.0" prefHeight="26.0" prefWidth="198.0" promptText="Release Date YYYY-MM-DD">
+         <font>
+            <Font name="Bookman Old Style Italic" size="13.0" />
+         </font>
+      </TextField>
+    </children>
+
+</AnchorPane>

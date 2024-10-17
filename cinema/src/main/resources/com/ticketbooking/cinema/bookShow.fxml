@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="475.0" prefWidth="661.0" style="-fx-background-color: #4d0026;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ticketbooking.cinema.BookShow">
+
+    <children>
+        <AnchorPane prefHeight="66.0" prefWidth="748.0" style="-fx-background-color: #330000FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="52.0" layoutY="21.0" text="Book your tickets" textFill="WHITE">
+                    <font>
+                        <Font name="Bookman Old Style Bold" size="20.0" />
+                    </font>
+                </Label>
+              <Button fx:id="back" layoutX="491.0" layoutY="13.0" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #330000FF;" text="Back" textFill="#fffefe">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="16.0" />
+               </font>
+            </Button>
+            </children>
+            <effect>
+                <DropShadow />
+            </effect>
+        </AnchorPane>
+        <TextField fx:id="ticket" layoutX="451.0" layoutY="244.0" prefHeight="25.0" prefWidth="169.0" promptText="Choose Number of tickets" />
+        <Separator layoutX="419.0" layoutY="76.0" orientation="VERTICAL" prefHeight="480.0" />
+
+        <RadioButton fx:id="premiumradiobutton" layoutX="515.0" layoutY="161.0" text="premium" textFill="#ffcc00">
+            <font>
+                <Font name="Bookman Old Style Bold" size="13.0" />
+            </font>
+         <toggleGroup>
+                <ToggleGroup fx:id="seat" />
+         </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="regularradiobutton" layoutX="518.0" layoutY="195.0" prefHeight="18.0" prefWidth="79.0" text="regular" textFill="#dddddd" toggleGroup="$seat">
+            <font>
+                <Font name="Bookman Old Style Bold" size="13.0" />
+            </font>
+        </RadioButton>
+        <Label layoutX="498.0" layoutY="122.0" prefHeight="30.0" prefWidth="119.0" text="Select Seat" textFill="WHITE">
+            <font>
+                <Font name="Bookman Old Style Bold" size="18.0" />
+            </font>
+        </Label>
+        <VBox layoutX="25.0" layoutY="211.0" prefHeight="66.0" prefWidth="246.0" style="-fx-background-color: white; -fx-border-color: red; -fx-background-radius: 3; -fx-border-width: 0 0 0 3,0 0; -fx-border-radius: 3;">
+            <children>
+                <Label prefHeight="31.0" prefWidth="155.0" style="-fx-font-size: 15;" text="Movie">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="16.0" />
+               </font></Label>
+                <Label fx:id="moviename" prefHeight="28.0" prefWidth="221.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="Sample Name">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="13.0" />
+               </font></Label>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </VBox>
+        <VBox layoutX="25.0" layoutY="305.0" prefHeight="134.0" prefWidth="246.0" style="-fx-background-color: white; -fx-border-color: #00ACC1; -fx-background-radius: 3; -fx-border-width: 0 0 0 3,0 0; -fx-border-radius: 3;">
+            <children>
+                <Label prefHeight="31.0" prefWidth="155.0" style="-fx-font-size: 15;" text="Seats" />
+                <Pane prefHeight="40.0" prefWidth="223.0">
+                    <children>
+                        <Label layoutY="6.0" prefHeight="28.0" prefWidth="90.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="Premium">
+                            <padding>
+                                <Insets left="5.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="premium_seat" layoutX="163.0" layoutY="7.0" prefHeight="29.0" prefWidth="46.0" style="-fx-background-radius: 15; -fx-background-color: #FFEB3B; -fx-border-color: black; -fx-border-radius: 15;" text="30" wrapText="true">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <Label layoutX="112.0" layoutY="5.0" prefHeight="31.0" prefWidth="30.0" style="-fx-font-size: 14;" text="30" />
+                        <Label layoutX="80.0" layoutY="5.0" prefHeight="31.0" prefWidth="20.0" style="-fx-font-size: 14;" />
+                    </children>
+                </Pane>
+                <Pane prefHeight="40.0" prefWidth="223.0">
+                    <children>
+                        <Label layoutY="6.0" prefHeight="28.0" prefWidth="90.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="Regular">
+                            <padding>
+                                <Insets left="5.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="regular_seat" layoutX="163.0" layoutY="6.0" prefHeight="29.0" prefWidth="46.0" style="-fx-background-radius: 15; -fx-background-color: #E0E0E0; -fx-border-color: black; -fx-border-radius: 15;" text="50" wrapText="true">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <Label layoutX="112.0" layoutY="5.0" prefHeight="31.0" prefWidth="30.0" style="-fx-font-size: 14;" text="15" />
+                        <Label layoutX="80.0" layoutY="5.0" prefHeight="31.0" prefWidth="20.0" style="-fx-font-size: 14;" />
+                    </children>
+                </Pane>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </VBox>
+        <VBox layoutX="25.0" layoutY="457.0" prefHeight="66.0" prefWidth="246.0" style="-fx-background-color: white; -fx-border-color: #EA80FC; -fx-background-radius: 3; -fx-border-width: 0 0 0 3,0 0; -fx-border-radius: 3;">
+            <children>
+                <Label prefHeight="31.0" prefWidth="155.0" style="-fx-font-size: 15;" text="Show Time" />
+                <Label fx:id="time" prefHeight="28.0" prefWidth="221.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="00:00" />
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </VBox>
+        <VBox layoutX="305.0" layoutY="104.0" prefHeight="66.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: #64DD17; -fx-background-radius: 3; -fx-border-width: 0 0 0 3,0 0; -fx-border-radius: 3;">
+            <children>
+                <Label fx:id="halltf" prefHeight="31.0" prefWidth="155.0" style="-fx-font-size: 15;" text="Hall" />
+                <Label fx:id="hall" prefHeight="28.0" prefWidth="221.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="Hall A">
+               <font>
+                  <Font name="Bookman Old Style Italic" size="21.0" />
+               </font></Label>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </VBox>
+        <Button fx:id="purchase" layoutX="491.0" layoutY="471.0" prefHeight="40.0" prefWidth="132.0" style="-fx-background-color: #330000FF;" text="Purchase" textFill="#faf6f6">
+         <font>
+            <Font name="Bookman Old Style Bold" size="18.0" />
+         </font></Button>
+      <Label layoutX="450.0" layoutY="290.0" prefHeight="30.0" prefWidth="170.0" text="Payment method" textFill="WHITE">
+         <font>
+            <Font name="Bookman Old Style Bold" size="18.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="Cash" layoutX="508.0" layoutY="334.0" prefHeight="18.0" prefWidth="20.0" text="Cash" textFill="#4d0026">
+         <font>
+            <Font name="Bookman Old Style Bold" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="paymentMethod" />
+         </toggleGroup>
+      </RadioButton>
+      <ImageView fitHeight="40.0" fitWidth="64.0" layoutX="548.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/casha.png" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="Card" layoutX="508.0" layoutY="381.0" prefHeight="18.0" prefWidth="20.0" text="Credit Card" textFill="#4d0026">
+         <font>
+            <Font name="Bookman Old Style Bold" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="seat11" />
+         </toggleGroup>
+      </RadioButton>
+      <ImageView fitHeight="31.0" fitWidth="46.0" layoutX="557.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/visaa.png" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="PayPal" layoutX="508.0" layoutY="429.0" prefHeight="18.0" prefWidth="20.0" text="PayPal" textFill="#4d0026">
+         <font>
+            <Font name="Bookman Old Style Bold" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="seat111" />
+         </toggleGroup>
+      </RadioButton>
+      <ImageView fitHeight="48.0" fitWidth="64.0" layoutX="557.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pictures/paypal.png" />
+         </image>
+      </ImageView>
+        <VBox layoutX="25.0" layoutY="104.0" prefHeight="66.0" prefWidth="246.0" style="-fx-background-color: white; -fx-border-color: #304FFE; -fx-background-radius: 3; -fx-border-width: 0 0 0 3,0 0; -fx-border-radius: 3;">
+            <children>
+                <Label prefHeight="31.0" prefWidth="155.0" style="-fx-font-size: 15;" text="Cinema" />
+                <Label fx:id="theatrename" prefHeight="28.0" prefWidth="221.0" style="-fx-font-size: 15; -fx-font-weight: BOLD;" text="Sample Name">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </VBox>
+
+    </children>
+
+</AnchorPane>

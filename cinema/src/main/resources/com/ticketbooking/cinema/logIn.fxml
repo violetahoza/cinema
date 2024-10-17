@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffcccc;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ticketbooking.cinema.LogInController">
+
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #800000;">
+            <children>
+                <ImageView fitHeight="189.0" fitWidth="181.0" layoutX="7.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/hollywood-star.png" />
+                    </image>
+                </ImageView>
+            <Label layoutX="7.0" layoutY="46.0" prefHeight="32.0" prefWidth="181.0" text="Movie " textAlignment="CENTER" textFill="#faf7f7">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="288.0" prefHeight="38.0" prefWidth="104.0" text="Booking" textAlignment="CENTER" textFill="#faf7f7">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="319.0" prefHeight="38.0" prefWidth="92.0" text="System" textAlignment="CENTER" textFill="#faf7f7">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="98.0" layoutY="45.0" prefHeight="38.0" prefWidth="92.0" text="Ticket" textAlignment="CENTER" textFill="#faf7f7">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="24.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="400.0" prefWidth="408.0">
+            <children>
+                <ImageView fitHeight="66.0" fitWidth="65.0" layoutX="255.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../pictures/password.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="14.0" layoutY="100.0" prefHeight="66.0" prefWidth="145.0" style="-fx-background-color: #ffcccc;" text="Username" textFill="#26020d">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="151.0" prefHeight="66.0" prefWidth="145.0" style="-fx-background-color: #ffcccc;" text="Password" textFill="#26020d">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernametf" layoutX="157.0" layoutY="117.0" prefHeight="32.0" prefWidth="196.0" promptText="Username" style="-fx-background-color: #ffcccc;">
+                    <effect>
+                        <InnerShadow blurType="ONE_PASS_BOX">
+                            <color>
+                                <Color red="0.9254902005195618" green="0.6431372761726379" blue="0.6431372761726379" />
+                            </color>
+                        </InnerShadow>
+                    </effect></TextField>
+                <Button fx:id="loginButton" layoutX="42.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="42.0" prefWidth="153.0" style="-fx-background-color: #800000;" text="Login" textFill="#fcfcfc">
+                    <font>
+                        <Font name="Century Schoolbook Bold Italic" size="22.0" />
+                    </font>
+                </Button>
+                <Label layoutX="76.0" layoutY="13.0" prefHeight="66.0" prefWidth="145.0" style="-fx-background-color: #ffcccc;" text="Login" textFill="#26020d">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="42.0" />
+                    </font>
+                </Label>
+                <Label layoutX="67.0" layoutY="327.0" prefHeight="56.0" prefWidth="146.0" style="-fx-background-color: #ffcccc;" text="Not a user?" textFill="#26020d">
+                    <font>
+                        <Font name="Lucida Calligraphy Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="signupButton" layoutX="202.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleSignupButtonAction" prefHeight="42.0" prefWidth="146.0" style="-fx-background-color: #ffcccc;" text="Sign up!" textFill="#7b0303" underline="true">
+                    <font>
+                        <Font name="Century Schoolbook Bold Italic" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="cancelButton" layoutX="222.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="42.0" prefWidth="146.0" style="-fx-background-color: #800000;" text="Exit" textFill="#fcfcfc">
+                    <font>
+                        <Font name="Century Schoolbook Bold Italic" size="22.0" />
+                    </font>
+                </Button>
+            <PasswordField fx:id="passwordtf1" layoutX="157.0" layoutY="168.0" prefHeight="32.0" prefWidth="196.0" promptText="Password" style="-fx-background-color: #ffcccc;">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.9254902005195618" green="0.6431372761726379" blue="0.6431372761726379" />
+                     </color>
+                  </InnerShadow>
+               </effect></PasswordField>
+            <Label layoutX="3.0" layoutY="200.0" prefHeight="66.0" prefWidth="146.0" style="-fx-background-color: #ffcccc;" text="Confirm Password" textFill="#26020d">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordtf2" layoutX="157.0" layoutY="217.0" prefHeight="32.0" prefWidth="196.0" promptText="Confirm Password" style="-fx-background-color: #ffcccc;">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.9254902005195618" green="0.6431372761726379" blue="0.6431372761726379" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </PasswordField>
+            </children></AnchorPane>
+    </children>
+</HBox>
