@@ -1,0 +1,13 @@
+Access request for virtual address: Virtual page number: 0 Offset: 3
+TLB miss for virtual page nr: 0
+Page table miss for virtual page number: 0
+Page fault for virtual page number: 0. Loading page from disk.
+Loaded virtual page number: 0 into physical frame number: 0
+Loaded data: 3 from: Frame number: 0 Offset: 3
+Storing data to: Virtual page number: 0 Offset: 4 . Data stored: 112
+TLB hit! Physical page number: 0
+Stored data at: com.example.vms.model.Address@769c876e
+Stored data: 112 to: Frame number: 0 Offset: 4
+Access request for virtual address: Virtual page number: 0 Offset: 4
+TLB hit! Physical page number: 0
+Loaded data: 112 from: Frame number: 0 Offset: 4
