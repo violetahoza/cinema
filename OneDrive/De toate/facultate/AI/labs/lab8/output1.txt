@@ -1,0 +1,158 @@
+============================== Prover9 ===============================
+Prover9 (64) version 2009-11A, November 2009.
+Process 1075 was started by violeta on LAPTOP-J1T1GSAL,
+Mon Nov 18 08:41:55 2024
+The command was "/mnt/c/Users/hozas/OneDrive/De toate/facultate/AI/labs/LADR-2009-11A/bin/prover9 -f fdr.in".
+============================== end of head ===========================
+
+============================== INPUT =================================
+
+% Reading from file fdr.in
+
+set(binary_resolution).
+set(print_gen).
+
+formulas(assumptions).
+under_attack(country_us).
+politician(fdr).
+politician(x) -> isolationist(x) | interventionist(x).
+interventionist(x) -> declare_war(x).
+isolationist(x) & under_attack(country_us) -> declare_war(x).
+end_of_list.
+
+formulas(goals).
+declare_war(fdr).
+end_of_list.
+
+============================== end of input ==========================
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 politician(x) -> isolationist(x) | interventionist(x) # label(non_clause).  [assumption].
+2 interventionist(x) -> declare_war(x) # label(non_clause).  [assumption].
+3 isolationist(x) & under_attack(country_us) -> declare_war(x) # label(non_clause).  [assumption].
+4 declare_war(fdr) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+under_attack(country_us).  [assumption].
+politician(fdr).  [assumption].
+-politician(x) | isolationist(x) | interventionist(x).  [clausify(1)].
+-interventionist(x) | declare_war(x).  [clausify(2)].
+-isolationist(x) | -under_attack(country_us) | declare_war(x).  [clausify(3)].
+-declare_war(fdr).  [deny(4)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+Eliminating under_attack/1
+5 -isolationist(x) | -under_attack(country_us) | declare_war(x).  [clausify(3)].
+6 under_attack(country_us).  [assumption].
+Derived: -isolationist(x) | declare_war(x).  [resolve(5,b,6,a)].
+
+Eliminating politician/1
+7 -politician(x) | isolationist(x) | interventionist(x).  [clausify(1)].
+8 politician(fdr).  [assumption].
+Derived: isolationist(fdr) | interventionist(fdr).  [resolve(7,a,8,a)].
+
+Eliminating interventionist/1
+9 isolationist(fdr) | interventionist(fdr).  [resolve(7,a,8,a)].
+10 -interventionist(x) | declare_war(x).  [clausify(2)].
+Derived: isolationist(fdr) | declare_war(fdr).  [resolve(9,b,10,a)].
+
+Eliminating declare_war/1
+11 -isolationist(x) | declare_war(x).  [resolve(5,b,6,a)].
+12 -declare_war(fdr).  [deny(4)].
+Derived: -isolationist(fdr).  [resolve(11,b,12,a)].
+13 isolationist(fdr) | declare_war(fdr).  [resolve(9,b,10,a)].
+Derived: isolationist(fdr).  [resolve(13,b,12,a)].
+
+Eliminating isolationist/1
+14 isolationist(fdr).  [resolve(13,b,12,a)].
+15 -isolationist(fdr).  [resolve(11,b,12,a)].
+Derived: $F.  [resolve(14,a,15,a)].
+
+============================== end predicate elimination =============
+
+Auto_denials:  (no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ ]).
+Function symbol precedence:  function_order([ ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(neg_binary_resolution).  % (HNE depth_diff=0)
+  % clear(ordered_res).  % (HNE depth_diff=0)
+  % set(ur_resolution).  % (HNE depth_diff=0)
+    % set(ur_resolution) -> set(pos_ur_resolution).
+    % set(ur_resolution) -> set(neg_ur_resolution).
+
+Auto_process settings:  (no changes).
+
+
+generated: $F.  [resolve(14,a,15,a)].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.01 (+ 0.00) seconds.
+% Length of proof is 16.
+% Level of proof is 5.
+% Maximum clause weight is 0.000.
+% Given clauses 0.
+
+1 politician(x) -> isolationist(x) | interventionist(x) # label(non_clause).  [assumption].
+2 interventionist(x) -> declare_war(x) # label(non_clause).  [assumption].
+3 isolationist(x) & under_attack(country_us) -> declare_war(x) # label(non_clause).  [assumption].
+4 declare_war(fdr) # label(non_clause) # label(goal).  [goal].
+5 -isolationist(x) | -under_attack(country_us) | declare_war(x).  [clausify(3)].
+6 under_attack(country_us).  [assumption].
+7 -politician(x) | isolationist(x) | interventionist(x).  [clausify(1)].
+8 politician(fdr).  [assumption].
+9 isolationist(fdr) | interventionist(fdr).  [resolve(7,a,8,a)].
+10 -interventionist(x) | declare_war(x).  [clausify(2)].
+11 -isolationist(x) | declare_war(x).  [resolve(5,b,6,a)].
+12 -declare_war(fdr).  [deny(4)].
+13 isolationist(fdr) | declare_war(fdr).  [resolve(9,b,10,a)].
+14 isolationist(fdr).  [resolve(13,b,12,a)].
+15 -isolationist(fdr).  [resolve(11,b,12,a)].
+16 $F.  [resolve(14,a,15,a)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=0. Generated=1. Kept=0. proofs=1.
+Usable=0. Sos=0. Demods=0. Limbo=0, Disabled=12. Hints=0.
+Kept_by_rule=0, Deleted_by_rule=0.
+Forward_subsumed=0. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=0 (0 lex), Back_demodulated=0. Back_unit_deleted=0.
+Demod_attempts=0. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=0.
+Megabytes=0.03.
+User_CPU=0.01, System_CPU=0.00, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 1075 exit (max_proofs) Mon Nov 18 08:41:55 2024

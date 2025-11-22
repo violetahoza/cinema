@@ -1,0 +1,15 @@
+package com.vio.device_service.dto;
+
+import java.time.LocalDateTime;
+
+public record DeviceResponse(
+        Long deviceId,
+        String name,
+        String description,
+        String location,
+        Double maximumConsumption,
+        Long userId,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
+) {
+}

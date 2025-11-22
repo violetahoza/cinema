@@ -1,0 +1,27 @@
+set(binary_resolution).
+set(print_gen).
+
+% FDR is a politician.
+% A politician could be an isolationist or an interventionist (maybe both!).
+% An interventionist would declare war.
+% If US is under attack, even an isolationist would declare war.
+% US is under atack.
+% constant: fdr (meaning FDR)
+% constant: country us (meaning US)
+% predicate: under attack(x) (meaning country x is under attack)
+% predicate: politician(x) (meaning x is a politician)
+% predicate: interventionist(x) (meaning x is an interventionist)
+% predicate: isolationist(x) (meaning x is an isolationist)
+% predicate: declare war(x) (meaning x will declare war)
+
+formulas(assumptions).
+ under_attack(country_us).
+ politician(fdr).
+ politician(x) -> isolationist(x) | interventionist(x).
+ interventionist(x) -> declare_war(x).
+ isolationist(x) & under_attack(country_us) -> declare_war(x).
+end_of_list.
+
+formulas(goals).
+ declare_war(fdr).
+end_of_list.

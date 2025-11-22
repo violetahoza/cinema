@@ -1,0 +1,30 @@
+%   - american(X): X is an American.
+%   - hostile(X): X is hostile.
+%   - enemy(X, Y): X is an enemy of Y.
+%   - weapon(X): X is a weapon.
+%   - missile(X): X is a missile.
+%   - owns(X, Y): X owns Y.
+%   - sells(X, Y, Z): X sells Y to Z.
+%   - criminal(X): X is a criminal.
+
+formulas(assumptions).
+
+all X all Y all Z (american(X) & weapon(Y) & hostile(Z) & sells(X, Y, Z) -> criminal(X)).
+
+all X (missile(X) -> weapon(X)).
+
+all X (enemy(X, america) -> hostile(X)).
+
+enemy(nono, america).
+
+missile(m1).
+owns(nono, m1).
+
+all X (missile(X) & owns(nono, X) -> sells(west, X, nono)).
+american(west).
+
+end_of_list.
+
+formulas(goals).
+criminal(west).
+end_of_list.

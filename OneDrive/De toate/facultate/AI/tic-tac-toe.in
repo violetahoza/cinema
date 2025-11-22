@@ -1,0 +1,32 @@
+X1_3.
+X2_2.
+X2_3.
+X3_3.
+
+        % Win Conditions for X
+        X1_1 & X1_2 & X1_3 & X_wins.
+        X2_1 & X2_2 & X2_3 & X_wins.
+        X3_1 & X3_2 & X3_3 & X_wins.
+
+        X1_1 & X2_1 & X3_1 & X_wins.
+        X1_2 & X2_2 & X3_2 & X_wins.
+        X1_3 & X2_3 & X3_3 & X_wins.
+
+        X1_1 & X2_2 & X3_3 & X_wins.
+        X1_3 & X2_2 & X3_1 & X_wins.
+
+        % Win Conditions for O
+        O1_1 & O1_2 & O1_3 & O_wins.
+        O2_1 & O2_2 & O2_3 & O_wins.
+        O3_1 & O3_2 & O3_3 & O_wins.
+
+        O1_1 & O2_1 & O3_1 & O_wins.
+        O1_2 & O2_2 & O3_2 & O_wins.
+        O1_3 & O2_3 & O3_3 & O_wins.
+
+        O1_1 & O2_2 & O3_3 & O_wins.
+        O1_3 & O2_2 & O3_1 & O_wins.
+
+        % Only one player can win
+        -(X_wins & O_wins).
+        

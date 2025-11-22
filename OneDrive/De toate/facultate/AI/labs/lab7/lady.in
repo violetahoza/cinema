@@ -1,0 +1,31 @@
+formulas(assumptions).
+    l1 | l2 | l3.
+    
+    l1 -> -l2.
+    l1 -> -l3.
+    l2 -> -l1.
+    l2 -> -l3.
+    l3 -> -l1.
+    l3 -> -l2.
+
+    t1 & t2 | t2 & t3 | t1 & t3.
+
+    l1 -> -t1.
+    l2 -> -t2.
+    l3 -> -t3.
+
+% what was written on the doors
+     l1 -> t2.
+     l2 -> t2.
+     l3 -> t1.
+
+% at least on of the room is lying
+    (t1 & t2) -> (-t2 | -t2).    
+    (t2 & t3) -> (-t2 | -t1).    
+    (t1 & t3) -> (-t2 | -t1).    
+
+end_of_list.
+
+formulas(goals).
+    l3.
+end_of_list.

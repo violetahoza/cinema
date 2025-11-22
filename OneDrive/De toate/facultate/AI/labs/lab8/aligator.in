@@ -1,0 +1,126 @@
+set(binary_resolution).
+set(print_gen).
+
+formulas(assumptions).
+ 
+    % casa 1: a
+    % casa 2: b
+    % casa 3: c 
+    % casa 4: d
+    % casa 5: e
+
+    % the houses are different
+    different_from(a, b).
+    different_from(a, c).
+    different_from(a, d).
+    different_from(a, e).
+    different_from(b, c).
+    different_from(b, d).
+    different_from(b, e).
+    different_from(c, d).
+    different_from(c, e).
+    different_from(d, e).
+
+    % prove that the relationship is symmetrical
+    different_from(x, y) -> different_from(y, x).
+
+    % right neighbour exclusivity
+    right_neighbour(x, y) -> -right_neighbour(y, x).
+
+    right_neighbour(a, b).
+    -right_neighbour(a, c).
+    -right_neighbour(a, d).
+    -right_neighbour(a, e).
+    -right_neighbour(a, a).
+
+    right_neighbour(b, c).
+    -right_neighbour(b, d).
+    -right_neighbour(b, e).
+    -right_neighbour(b, b).
+
+    right_neighbour(c, d).
+    -right_neighbour(c, e).
+    -right_neighbour(c, a).
+    -right_neighbour(c, c).
+
+    right_neighbour(d, e).
+    -right_neighbour(d, a).
+    -right_neighbour(d, b).
+    -right_neighbour(d, d).
+
+    -right_neighbour(e, a).
+    -right_neighbour(e, b).
+    -right_neighbour(e, c).
+    -right_neighbour(e, e).
+
+    % neighbours
+    neighbour(x, y) <-> right_neighbour(x, y) | right_neighbour(y, x).
+
+    % each house has at least one nationality
+    austrian(x) | belgian(x) | czech(x) | dane(x) | estonian(x).
+
+    % each house has at least one animal
+    alligator(x) | bulldog(x) | cat(x) | donkey(x) | eagle(x).
+
+    % each house has at least one drink
+    advocaat(x) | beer(x) | cider(x) | daiquiri(x) | eiswein(x).
+
+    % each house has at least one color
+    amber(x) | beige(x) | cyan(x) | denim(x) | emerald(x).
+
+    % each house has at least one car
+    aston_martin(x) | bugatti(x) | cadillac(x) | dacia(x) | edonis(x).
+    
+    % each property applies to at least one house
+    % nationalities
+    austrian(x) & austrian(y) -> -different_from(x, y).
+    belgian(x) & belgian(y) -> -different_from(x, y).
+    czech(x) & czech(y) -> -different_from(x, y).
+    dane(x) & dane(y) -> -different_from(x, y).
+    estonian(x) & estonian(y) -> -different_from(x, y).
+
+    % animals
+    alligator(x) & alligator(y) -> -different_from(x, y).
+    bulldog(x) & bulldog(y) -> -different_from(x, y).
+    cat(x) & cat(y) -> -different_from(x, y).
+    donkey(x) & donkey(y) -> -different_from(x, y).
+    eagle(x) & eagle(y) -> -different_from(x, y).
+
+    % drinks
+    advocaat(x) & advocaat(y) -> -different_from(x, y).
+    beer(x) & beer(y) -> -different_from(x, y).
+    cider(x) & cider(y) -> -different_from(x, y).
+    daiquiri(x) & daiquiri(y) -> -different_from(x, y).
+    eiswein(x) & eiswein(y) -> -different_from(x, y).
+
+    % colors
+    amber(x) & amber(y) -> -different_from(x, y).
+    beige(x) & beige(y) -> -different_from(x, y).
+    cyan(x) & cyan(y) -> -different_from(x, y).
+    denim(x) & denim(y) -> -different_from(x, y).
+    emerald(x) & emerald(y) -> -different_from(x, y).
+
+    % cars
+    aston_martin(x) & aston_martin(y) -> -different_from(x, y).
+    bugatti(x) & bugatti(y) -> -different_from(x, y).
+    cadillac(x) & cadillac(y) -> -different_from(x, y).
+    dacia(x) & dacia(y) -> -different_from(x, y).
+    edonis(x) & edonis(y) -> -different_from(x, y).
+
+    austrian(x) <-> amber(x).
+    cider(c).
+    belgian(x) <-> bulldog(x).
+    czech(a).
+    dacia(x) & eagle(y) -> neighbour(x, y).
+    czech(x) & denim(y) -> neighbour(x, y).
+    bugatti(x) <-> cat(x).
+    beige(x) <-> cadillac(x).
+    advocaat(x) <-> cyan(x).
+    dane(x) <-> eiswein(x).
+    estonian(x) <-> edonis(x).
+    cadillac(x) & donkey(y) -> neighbour(x, y).
+    cyan(x) & emerald(y) -> right_neighbour(x, y).
+    aston_martin(x) <-> daiquiri(x).
+
+end_of_list.
+

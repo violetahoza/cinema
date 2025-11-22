@@ -1,0 +1,304 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.2
+    container_name: reverse-proxy
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker" # allows Traefik to automatically discover services and their configuration from Docker labels
+      - "--accesslog=true"
+      - "--accesslog.filepath=/var/log/traefik/access.log"
+      - "--log.level=INFO"
+      - "--entrypoints.web.address=:80" # defines where Traefik listens for traffic
+    ports:
+      - "80:80" # the entry point
+      - "8080:8080" # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_logs:/var/log/traefik
+    networks:
+      - energy_management_network
+    restart: always
+
+  synchronization-broker:
+    image: rabbitmq:3.13-management
+    container_name: synchronization-broker
+    ports:
+      - "5672:5672" # AMQP port
+      - "15672:15672" # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq_user
+      RABBITMQ_DEFAULT_PASS: rabbitmq_pass
+    networks:
+      - energy_management_network
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  data-collection-broker:
+    image: rabbitmq:3.13-management
+    container_name: data-collection-broker
+    ports:
+      - "5673:5672" # AMQP port
+      - "15673:15672" # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq_user
+      RABBITMQ_DEFAULT_PASS: rabbitmq_pass
+    networks:
+      - energy_management_network
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  credentials_db:
+    image: mysql
+    container_name: credentials_db
+    ports:
+      - "4000:3306"
+    environment:
+      MYSQL_DATABASE: credentials_db
+      MYSQL_USER: credentials_user
+      MYSQL_PASSWORD: credentials_pass
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - credentials_data:/var/lib/mysql
+    networks:
+      - energy_management_network
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  users_db:
+    image: mysql
+    container_name: users_db
+    ports:
+      - "4001:3306"
+    environment:
+      MYSQL_DATABASE: users_db
+      MYSQL_USER: users_user
+      MYSQL_PASSWORD: users_pass
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - users_data:/var/lib/mysql
+    networks:
+      - energy_management_network
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  devices_db:
+    image: mysql
+    container_name: devices_db
+    ports:
+      - "4002:3306"
+    environment:
+      MYSQL_DATABASE: devices_db
+      MYSQL_USER: devices_user
+      MYSQL_PASSWORD: devices_pass
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - devices_data:/var/lib/mysql
+    networks:
+      - energy_management_network
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  monitoring_db:
+    image: mysql
+    container_name: monitoring_db
+    ports:
+      - "4003:3306"
+    environment:
+      MYSQL_DATABASE: monitoring_db
+      MYSQL_USER: monitoring_user
+      MYSQL_PASSWORD: monitoring_pass
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - monitoring_data:/var/lib/mysql
+    networks:
+      - energy_management_network
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  authorization-service:
+    build: ./backend/authorization-service
+    container_name: authorization-service
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./backend/authorization-service/.env
+    depends_on:
+      credentials_db:
+        condition: service_healthy
+      synchronization-broker:
+        condition: service_healthy
+    environment:
+      DB_HOST: credentials_db
+      DB_USER: credentials_user
+      DB_PASS: credentials_pass
+      DB_NAME: credentials_db
+    networks:
+      - energy_management_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.auth-public.rule=PathPrefix(`/api/auth`) && (Path(`/api/auth/login`))"
+      - "traefik.http.routers.auth-public.entrypoints=web"
+      - "traefik.http.routers.auth-public.priority=100"
+      - "traefik.http.routers.auth-public.middlewares=cors-headers"
+      - "traefik.http.services.auth.loadbalancer.server.port=8083"
+      # CORS Middleware
+      - "traefik.http.middlewares.cors-headers.headers.accessControlAllowOriginList=http://localhost:3000"
+      - "traefik.http.middlewares.cors-headers.headers.accessControlAllowMethods=GET,POST,PUT,PATCH,DELETE,OPTIONS"
+      - "traefik.http.middlewares.cors-headers.headers.accessControlAllowHeaders=Content-Type,Authorization"
+      - "traefik.http.middlewares.cors-headers.headers.accessControlAllowCredentials=true"
+      # Forward Auth Middleware
+      - "traefik.http.middlewares.auth-middleware.forwardauth.address=http://authorization-service:8083/api/auth/validate"
+      - "traefik.http.middlewares.auth-middleware.forwardauth.authRequestHeaders=Authorization"
+      - "traefik.http.middlewares.auth-middleware.forwardauth.authResponseHeaders=X-User-Id,X-Username,X-User-Role"
+    restart: always
+
+  user-service:
+    build: ./backend/user-service
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      DB_HOST: users_db
+      DB_USER: users_user
+      DB_PASS: users_pass
+      DB_NAME: users_db
+    depends_on:
+      users_db:
+        condition: service_healthy
+      synchronization-broker:
+        condition: service_healthy
+    networks:
+      - energy_management_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.users.rule=PathPrefix(`/api/users`)"
+      - "traefik.http.routers.users.entrypoints=web"
+      - "traefik.http.routers.users.priority=50"
+      - "traefik.http.routers.users.middlewares=auth-middleware,cors-headers"
+      - "traefik.http.services.user-service.loadbalancer.server.port=8081"
+    restart: always
+
+
+  device-service:
+    build: ./backend/device-service
+    container_name: device-service
+    ports:
+      - "8082:8082"
+    environment:
+      DB_HOST: devices_db
+      DB_USER: devices_user
+      DB_PASS: devices_pass
+      DB_NAME: devices_db
+    depends_on:
+      devices_db:
+        condition: service_healthy
+      synchronization-broker:
+        condition: service_healthy
+    networks:
+      - energy_management_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.devices.rule=PathPrefix(`/api/devices`)"
+      - "traefik.http.routers.devices.entrypoints=web"
+      - "traefik.http.routers.devices.priority=100"
+      - "traefik.http.routers.devices.middlewares=auth-middleware,cors-headers"
+      - "traefik.http.services.devices.loadbalancer.server.port=8082"
+    restart: always
+
+  monitoring-service:
+    build: ./backend/monitoring-service
+    container_name: monitoring-service
+    ports:
+      - "8084:8084"
+    environment:
+      DB_HOST: monitoring_db
+      DB_USER: monitoring_user
+      DB_PASS: monitoring_pass
+      DB_NAME: monitoring_db
+    depends_on:
+      monitoring_db:
+        condition: service_healthy
+      data-collection-broker:
+        condition: service_healthy
+      synchronization-broker:
+        condition: service_healthy
+    networks:
+      - energy_management_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.monitoring.rule=PathPrefix(`/api/monitoring`)"
+      - "traefik.http.routers.monitoring.entrypoints=web"
+      - "traefik.http.routers.monitoring.priority=100"
+      - "traefik.http.routers.monitoring.middlewares=auth-middleware,cors-headers"
+      - "traefik.http.services.monitoring.loadbalancer.server.port=8084"
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    environment:
+      - REACT_APP_API_URL=http://localhost
+    networks:
+      - energy_management_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.routers.frontend.priority=1"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+    restart: always
+
+#  device-simulator:
+#    build: ./device-data-simulator
+#    container_name: device-simulator
+#    environment:
+#      RABBITMQ_HOST: data-collection-broker
+#      RABBITMQ_PORT: 5672
+#      RABBITMQ_USER: rabbitmq_user
+#      RABBITMQ_PASS: rabbitmq_pass
+#      # define which devices to simulate
+#      DEVICE_IDS: "1,2,6,7,8,9,10,11"
+#      DATA_FOLDER_PATH: "/app/data"
+#    volumes:
+#      - ./device-data-simulator/data:/app/data
+#    depends_on:
+#      data-collection-broker:
+#        condition: service_healthy
+#    networks:
+#      - energy_management_network
+#    restart: always
+
+volumes:
+  credentials_data:
+  users_data:
+  devices_data:
+  monitoring_data:
+  traefik_logs:
+
+networks:
+  energy_management_network:
+    driver: bridge
