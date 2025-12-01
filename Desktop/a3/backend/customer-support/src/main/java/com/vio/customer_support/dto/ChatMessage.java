@@ -1,0 +1,25 @@
+package com.vio.customer_support.dto;
+
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ChatMessage {
+    private String content;
+    private String sender;
+    private String senderName;
+    private MessageType type;
+    private Long timestamp;
+    private String recipientUserId;
+
+    public enum MessageType {
+        USER_MESSAGE,
+        ADMIN_MESSAGE,
+        SYSTEM_MESSAGE,
+        RULE_RESPONSE,
+        AI_RESPONSE
+    }
+}

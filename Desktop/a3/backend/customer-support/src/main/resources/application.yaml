@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: customer-support
+
+  rabbitmq:
+    host: synchronization-broker
+    port: 5672
+    username: rabbitmq_user
+    password: rabbitmq_pass
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+
+server:
+  port: 8085
