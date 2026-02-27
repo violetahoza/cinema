@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4d0000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ticketbooking.cinema.ShowController">
+
+    <children>
+        <Label layoutX="196.0" layoutY="14.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Shows" textFill="#fcfbfb">
+            <font>
+                <Font name="Bookman Old Style Bold Italic" size="26.0" />
+            </font></Label>
+        <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />
+        <VBox layoutX="-9.0" layoutY="-1.0" prefHeight="610.0" prefWidth="172.0" style="-fx-background-color: #330000;">
+            <children>
+                <Label alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="142.0" text="Navigator" textFill="WHITE">
+                    <font>
+                        <Font name="Bookman Old Style Bold Italic" size="23.0" />
+                    </font>
+                </Label>
+                <Separator prefHeight="6.0" prefWidth="172.0" />
+                <ButtonBar prefHeight="0.0" prefWidth="32.0" />
+                <VBox prefHeight="427.0" prefWidth="57.0">
+                    <children>
+                        <GridPane prefHeight="331.0" prefWidth="172.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="28.6" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.99999809265137" minWidth="10.0" prefWidth="144.2" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="61.4" minHeight="10.0" prefHeight="61.4" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="58.99999999999999" minHeight="10.0" prefHeight="47.6" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="49.400000000000006" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="55.400000000000006" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="55.400000000000006" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="55.400000000000006" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Button fx:id="homeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #330000;" text="Home" textFill="#f7f5f5" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="moviesButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleMoviesButtonAction" prefHeight="34.0" prefWidth="130.0" style="-fx-background-color: #330000;" text="Movies" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="cinemaButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleMoviesButtonAction" prefHeight="51.0" prefWidth="134.0" style="-fx-background-color: #330000;" text="Cinema" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <ImageView fitHeight="28.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <image>
+                                        <Image url="@../../../pictures/home.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="36.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <image>
+                                        <Image url="@../../../pictures/director.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="37.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <image>
+                                        <Image url="@../../../pictures/theater.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="showButton" alignment="CENTER_RIGHT" layoutX="38.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleShowButtonAction" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #330000;" text="Show" textFill="#f7f5f5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="logoutButton" alignment="CENTER_RIGHT" layoutX="38.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #330000;" text="Logout" textFill="#f7f5f5" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <image>
+                                        <Image url="@../../../pictures/video-camera.png" />
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <image>
+                                        <Image url="@../../../pictures/logout.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="settingsButton" alignment="CENTER_RIGHT" layoutX="38.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleSettingsButtonAction" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #330000;" text="Settings" textFill="#f7f5f5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <font>
+                                        <Font name="Bookman Old Style Bold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <ImageView fitHeight="34.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <image>
+                                        <Image url="@../../../pictures/configuration.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+            </children></VBox>
+
+        <Button fx:id="refreshMovie" layoutX="879.0" layoutY="504.0" mnemonicParsing="false" onAction="#refreshTable" onMouseClicked="#refreshTable" prefHeight="26.0" prefWidth="194.0" style="-fx-background-color: #b30000;" text="Refresh" textFill="WHITE">
+            <font>
+                <Font name="Bookman Old Style Bold" size="20.0" />
+            </font>
+        </Button>
+        <SplitPane dividerPositions="0.8046116504854369" layoutX="804.0" layoutY="120.0" orientation="VERTICAL" prefHeight="364.0" prefWidth="319.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="406.0" style="-fx-background-color: #4d0000;">
+                    <children>
+                        <TextField fx:id="movietf" alignment="CENTER" layoutX="73.0" layoutY="22.0" prefHeight="35.0" prefWidth="194.0" promptText="movie">
+                            <font>
+                                <Font name="Bookman Old Style Bold Italic" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="cinematf" alignment="CENTER" layoutX="73.0" layoutY="75.0" prefHeight="35.0" prefWidth="194.0" promptText="cinema">
+                            <font>
+                                <Font name="Bookman Old Style Bold Italic" size="12.0" />
+                            </font>
+                        </TextField>
+                        <TextField fx:id="locationtf" alignment="CENTER" layoutX="73.0" layoutY="126.0" prefHeight="35.0" prefWidth="194.0" promptText="location">
+                            <font>
+                                <Font name="Bookman Old Style Bold Italic" size="12.0" />
+                            </font>
+                        </TextField>
+                  <TextField fx:id="screentf" alignment="CENTER" layoutX="73.0" layoutY="177.0" prefHeight="35.0" prefWidth="194.0" promptText="screen">
+                     <font>
+                        <Font name="Bookman Old Style Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="datetf" alignment="CENTER" layoutX="73.0" layoutY="229.0" prefHeight="35.0" prefWidth="194.0" promptText="start time">
+                     <font>
+                        <Font name="Bookman Old Style Bold Italic" size="12.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="274.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/schedule.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="274.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/cinema (1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="274.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/video-player.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="274.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/cinema (2).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="30.0" layoutX="274.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../pictures/location.png" />
+                     </image>
+                  </ImageView>
+                    </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="400.0" style="-fx-background-color: #4d0000;">
+                    <children>
+                        <Button fx:id="removeButton" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="38.0" prefWidth="98.0" style="-fx-background-color: #b30000;" text="Delete" textFill="WHITE">
+                            <font>
+                                <Font name="Bookman Old Style Bold" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="updateButton" layoutX="212.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: #b30000;" text="Update" textFill="WHITE">
+                            <font>
+                                <Font name="Bookman Old Style Bold" size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="addButton" alignment="CENTER_RIGHT" layoutX="113.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: #b30000;" text="Add " textFill="WHITE">
+                            <font>
+                                <Font name="Bookman Old Style Bold" size="18.0" />
+                            </font>
+                        </Button>
+                        <ImageView fitHeight="18.0" fitWidth="28.0" layoutX="14.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../pictures/cross.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="116.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../pictures/upload.png" />
+                            </image>
+                        </ImageView>
+                    </children></AnchorPane>
+            </items>
+        </SplitPane>
+
+        <ImageView fitHeight="38.0" fitWidth="30.0" layoutX="1032.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../pictures/refresh.png" />
+            </image>
+        </ImageView>
+      <TableView fx:id="table" onMouseClicked="#getSelected" blendMode="SCREEN" editable="true" layoutX="181.0" layoutY="74.0" prefHeight="504.0" prefWidth="602.0">
+        <columns>
+          <TableColumn fx:id="cinemaCol" minWidth="0.0" prefWidth="120.00003051757812" text="Cinema" />
+            <TableColumn fx:id="locationCol" prefWidth="102.20001220703125" text="Location" />
+            <TableColumn fx:id="screenCol" prefWidth="75.99996948242188" text="Screen" />
+            <TableColumn fx:id="startCol" prefWidth="112.80007934570312" text="Start" />
+          <TableColumn fx:id="movieCol" prefWidth="251.199951171875" text="Movie" />
+        </columns>
+      </TableView>
+    </children>
+
+</AnchorPane>
